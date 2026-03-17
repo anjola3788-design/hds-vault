@@ -488,5 +488,63 @@ function unlockAdmin() {
         </div>
     </div>
 </div>
+    <div style="width: 100%; padding: 80px 0; background: #f8fafc; text-align: center; border-top: 1px dashed #cbd5e1;">
+    <button id="adminBtn" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #94a3b8; padding: 10px 25px; border-radius: 8px; font-size: 0.75rem; cursor: pointer; font-weight: 600;">
+        Portal Management System v1.0
+    </button>
+</div>
+
+<div id="admin-panel" style="display: none; max-width: 900px; margin: 20px auto 100px; padding: 30px; background: #0f172a; color: white; border-radius: 20px; font-family: sans-serif;">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid #1e293b; padding-bottom: 15px; margin-bottom: 20px;">
+        <h2 style="font-size: 1.2rem;">HDS Vault Business Dashboard</h2>
+        <button onclick="document.getElementById('admin-panel').style.display='none'" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Close</button>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div style="background: #1e293b; padding: 20px; border-radius: 12px;">
+            <p style="color: #818cf8; font-size: 0.7rem; font-weight: 700;">TOTAL REVENUE</p>
+            <h1 id="total-revenue" style="font-size: 1.8rem; margin-top: 5px;">₦0.00</h1>
+        </div>
+        <div style="background: #1e293b; padding: 20px; border-radius: 12px;">
+            <p style="color: #34d399; font-size: 0.7rem; font-weight: 700;">SALES LOG</p>
+            <div id="sales-log-list" style="max-height: 100px; overflow-y: auto; font-size: 0.8rem; margin-top: 10px; color: #94a3b8;">
+                Waiting for transactions...
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // We target the button specifically by its ID
+    document.getElementById('adminBtn').onclick = function() {
+        const password = prompt("Enter Master Password:");
+        
+        if (password === "alwarith") {
+            const dashboard = document.getElementById('admin-panel');
+            dashboard.style.display = 'block';
+            dashboard.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            alert("Incorrect Password.");
+        }
+    };
+
+    // Global variable to track money
+    let totalBusinessRevenue = 0;
+
+    // Use this function inside your Paystack callback later
+    function logSale(amount) {
+        totalBusinessRevenue += amount;
+        document.getElementById('total-revenue').innerText = "₦" + totalBusinessRevenue.toLocaleString();
+        
+        const log = document.getElementById('sales-log-list');
+        const entry = document.createElement('div');
+        entry.style.padding = "5px 0";
+        entry.style.borderBottom = "1px solid #334155";
+        entry.innerText = `[SUCCESS] ₦${amount} - ${new Date().toLocaleTimeString()}`;
+        
+        if (log.innerText.includes("Waiting")) log.innerHTML = "";
+        log.prepend(entry);
+    }
+</script>
 </body>
 </html>
