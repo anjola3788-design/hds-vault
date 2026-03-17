@@ -167,9 +167,38 @@
             text-align: center;
         }
         .footer-logo { color: var(--white); font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; display: block; }
+        /* This part keeps the notification hidden in the corner */
+#sales-notif {
+    position: fixed; 
+    bottom: 20px; 
+    left: 20px; 
+    background: white; 
+    padding: 12px 20px;
+    border-radius: 12px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex; 
+    align-items: center; 
+    gap: 12px;
+    transform: translateX(-150%); /* Hidden to the left */
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 9999;
+    border-left: 5px solid #22c55e;
+    color: #0f172a;
+}
+
+#sales-notif.active { 
+    transform: translateX(0); /* Slides into view */
+}
     </style>
 </head>
 <body>
+    <div id="sales-notif">
+    <span style="font-size: 1.5rem;">✅</span>
+    <div>
+        <p id="notif-text" style="font-size: 0.85rem; font-weight: 700; margin: 0;"></p>
+        <p style="font-size: 0.7rem; color: #64748b; margin: 0;">Verified Purchase</p>
+    </div>
+</div>
 
     <nav>
         <div class="logo">HDSVAULT</div>
@@ -276,6 +305,32 @@
         });
         handler.openIframe();
     }
+    // This function creates the "fake" purchase alerts
+function runLiveBackend() {
+    const names = ["Anjola", "Bisi", "John", "Amina", "Suleiman", "Tolu"];
+    const topics = ["Foreign Policy", "ECOWAS Guide", "Security Project", "Diplomacy Material"];
+    
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+    
+    // Update the text
+    document.getElementById('notif-text').innerText = `${randomName} just bought ${randomTopic}`;
+    
+    // Show it
+    const notif = document.getElementById('sales-notif');
+    notif.classList.add('active');
+    
+    // Hide it again after 5 seconds
+    setTimeout(() => {
+        notif.classList.remove('active');
+    }, 5000);
+}
+
+// Start the loop - triggers every 30 seconds
+setInterval(runLiveBackend, 30000); 
+
+// Show the first one after 3 seconds so you can see it working immediately
+setTimeout(runLiveBackend, 3000);
 </script>
   <footer>
         <span class="footer-logo">HDSVAULT</span>
