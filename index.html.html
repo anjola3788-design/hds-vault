@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDS Vault | Premium Research Materials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #6366f1;
+            --accent: #f59e0b;
+            --success: #22c55e;
+            --dark: #0f172a;
+            --slate: #64748b;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: #f8fafc; color: var(--dark); line-height: 1.6; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--white);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-weight: 800; font-size: 1.4rem; color: var(--primary); letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--slate); font-weight: 500; font-size: 0.9rem; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            color: var(--white);
+            padding: 80px 5% 120px;
+            text-align: center;
+        }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: 1.1rem; opacity: 0.8; max-width: 700px; margin: 0 auto 30px; }
+        .cta-main {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .cta-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3); }
+
+        /* --- HOW IT WORKS --- */
+        .how-it-works {
+            max-width: 1100px;
+            margin: -60px auto 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+        .step-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .step-card span { font-size: 2rem; display: block; margin-bottom: 15px; }
+
+        /* --- CATALOG SECTION --- */
+        .catalog { max-width: 1100px; margin: 0 auto 80px; padding: 0 20px; }
+        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+        .section-header h2 { font-size: 1.8rem; }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .product-card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        
+        .cat-tag { 
+            background: #eef2ff; color: var(--primary); 
+            font-size: 0.75rem; font-weight: 700; padding: 6px 12px; 
+            border-radius: 8px; text-transform: uppercase; 
+        }
+
+        .title { font-size: 1.25rem; font-weight: 700; margin: 15px 0; color: var(--dark); line-height: 1.4; }
+        .price { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 20px; }
+        .price span { font-size: 0.9rem; color: var(--slate); font-weight: 400; }
+
+        .features { list-style: none; margin-bottom: 25px; }
+        .features li { font-size: 0.9rem; color: var(--slate); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .features li::before { content: "✓"; color: var(--success); font-weight: bold; }
+
+        .btn-buy {
+            background: var(--dark);
+            color: var(--white);
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-buy:hover { background: var(--primary); }
+        .whatsapp-chat {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    text-decoration: none;
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.chat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.chat-status {
+    background: white;
+    color: var(--dark);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid #e2e8f0;
+}
+
+.chat-button {
+    background: #25D366; /* WhatsApp Green */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-chat:hover { transform: scale(1.05); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.6);
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+        .footer-logo { color: var(--white); font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; display: block; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">HDSVAULT</div>
+        <ul class="nav-links">
+            <li><a href="#">Catalog</a></li>
+            <li><a href="#">Reviews</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Finish Your Project Without the Stress</h1>
+        <p>Get instant access to vetted, complete, and high-scoring History & Diplomatic Studies research materials. Written by finalists, for finalists.</p>
+        <a href="#catalog" class="cta-main">Browse Premium Materials</a>
+    </header>
+
+    <div class="how-it-works">
+        <div class="step-card">
+            <span>🔍</span>
+            <h4>Find Topic</h4>
+            <p style="font-size: 0.85rem; color: var(--slate); margin-top: 10px;">Search through our list of pre-approved research topics.</p>
+        </div>
+        <div class="step-card">
+            <span>💳</span>
+            <h4>Pay Securely</h4>
+            <p style="font-size: 0.85rem; color: var(--slate); margin-top: 10px;">Pay using Paystack (Bank Transfer, Card, or USSD).</p>
+        </div>
+        <div class="step-card">
+            <span>📥</span>
+            <h4>Instant Download</h4>
+            <p style="font-size: 0.85rem; color: var(--slate); margin-top: 10px;">Get the full PDF material delivered to your email instantly.</p>
+        </div>
+    </div>
+<section class="catalog" id="catalog">
+    <div class="section-header">
+        <div>
+            <span style="color:var(--primary); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">Premium Selection</span>
+            <h2>Research Catalog</h2>
+        </div>
+    </div>
+
+    <div class="product-grid">
+        <div class="product-card">
+            <span class="cat-tag">Foreign Policy</span>
+            <h3 class="title">Nigeria’s Afrocentric Foreign Policy: A Historical Analysis (1960 - 2026)</h3>
+            <div class="price">₦5,000</div>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="font-size: 0.75rem; font-weight: 600; color: var(--slate); display: block; margin-bottom: 5px;">Delivery Email Address</label>
+                <input type="email" id="email-1" placeholder="example@gmail.com" 
+                       style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; outline: none; font-size: 0.9rem;">
+            </div>
+
+            <button class="btn-buy" onclick="handlePay(5000, 'Afrocentric Policy', 'email-1')">Purchase & Download</button>
+            <p style="font-size: 0.7rem; color: var(--slate); text-align: center; margin-top: 10px;">🔒 Secure Payment via Paystack</p>
+        </div>
+
+        <div class="product-card">
+            <span class="cat-tag">Conflict Studies</span>
+            <h3 class="title">The Evolution of Non-State Actors in West African Security: 2015-2025</h3>
+            <div class="price">₦7,500</div>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="font-size: 0.75rem; font-weight: 600; color: var(--slate); display: block; margin-bottom: 5px;">Delivery Email Address</label>
+                <input type="email" id="email-2" placeholder="example@gmail.com" 
+                       style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; outline: none; font-size: 0.9rem;">
+            </div>
+
+            <button class="btn-buy" onclick="handlePay(7500, 'Non-State Actors', 'email-2')">Purchase & Download</button>
+            <p style="font-size: 0.7rem; color: var(--slate); text-align: center; margin-top: 10px;">🔒 Secure Payment via Paystack</p>
+        </div>
+    </div>
+</section>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+    function handlePay(amount, itemName, emailId) {
+        const emailField = document.getElementById(emailId);
+        const userEmail = emailField.value;
+        
+        // Basic validation
+        if (!userEmail || !userEmail.includes("@")) {
+            emailField.style.borderColor = "#ef4444"; // Turn red if empty/wrong
+            alert("Please enter a valid email address to receive your material.");
+            return;
+        }
+
+        emailField.style.borderColor = "#e2e8f0"; // Reset color
+
+        let handler = PaystackPop.setup({
+            key: 'pk_test_YOUR_ACTUAL_KEY_HERE', // Put your Public Key here
+            email: userEmail,
+            amount: amount * 100, 
+            currency: "NGN",
+            ref: 'HDS-' + Math.floor((Math.random() * 1000000000) + 1), 
+            callback: function(response){
+                alert('Payment Successful! Reference: ' + response.reference);
+                // Here is where you link to the actual file download
+                window.location.href = "https://your-site.com/success"; 
+            },
+            onClose: function(){
+                console.log('User closed the window');
+            }
+        });
+        handler.openIframe();
+    }
+</script>
+  <footer>
+        <span class="footer-logo">HDSVAULT</span>
+        <p>&copy; 2026 HDS Research Vault. All rights reserved.</p>
+        <p style="font-size: 0.75rem; margin-top: 10px;">Designed for History & Diplomatic Studies Finalists.</p>
+    </footer>
+<a href="https://wa.me/2348133116062?text=Hello%20HDS%20Vault,%20I%20am%20interested%20in%20a%20research%20material." 
+   class="whatsapp-chat" 
+   target="_blank">
+    <div class="chat-content">
+        <span class="chat-status">Online - Ask a Question</span>
+        <div class="chat-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.319 1.592 5.448 0 9.886-4.438 9.889-9.887.002-5.462-4.415-9.89-9.881-9.891-5.446 0-9.884 4.438-9.887 9.887-.001 2.22.634 3.813 1.584 5.451l-.93 3.398 3.506-.92zm9.749-6.342c-.252-.127-1.487-.734-1.718-.817-.23-.084-.398-.127-.566.127-.168.253-.649.817-.796.985-.147.168-.293.189-.545.063-.252-.127-1.064-.392-2.026-1.25-.748-.667-1.252-1.491-1.399-1.744-.147-.253-.016-.39.11-.515.112-.113.252-.295.378-.442.126-.147.167-.253.252-.421.084-.168.042-.316-.021-.442-.063-.127-.566-1.366-.775-1.871-.204-.494-.41-.427-.566-.435-.146-.008-.314-.01-.482-.01s-.441.063-.672.316c-.231.253-.881.861-.881 2.098s.903 2.435 1.028 2.604c.126.168 1.777 2.714 4.305 3.805.602.26 1.071.415 1.438.532.604.192 1.154.165 1.588.1.484-.072 1.487-.608 1.697-1.196.209-.588.209-1.092.147-1.196-.063-.105-.231-.168-.483-.295z"/></svg>
+            <span>Chat with Admin</span>
+        </div>
+    </div>
+</a>
+</body>
+</html>
