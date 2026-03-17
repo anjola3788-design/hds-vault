@@ -175,6 +175,11 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border: 1px solid #e2e8f0;
 }
+        #movableChat {
+    user-select: none;
+    -webkit-user-drag: none;
+    touch-action: none; /* Crucial for mobile dragging */
+}
 
 .chat-button {
     background: #25D366; /* WhatsApp Green */
@@ -458,17 +463,7 @@ function unlockAdmin() {
         <p>&copy; 2026 HDS Research Vault. All rights reserved.</p>
         <p style="font-size: 0.75rem; margin-top: 10px;">Designed for History & Diplomatic Studies Finalists.</p>
     </footer>
-<a href="https://wa.me/2348133116062?text=Hello%20HDS%20Vault,%20I%20am%20interested%20in%20a%20research%20material." 
-   class="whatsapp-chat" 
-   target="_blank">
-    <div class="chat-content">
-        <span class="chat-status">Online - Ask a Question</span>
-        <div class="chat-button">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.319 1.592 5.448 0 9.886-4.438 9.889-9.887.002-5.462-4.415-9.89-9.881-9.891-5.446 0-9.884 4.438-9.887 9.887-.001 2.22.634 3.813 1.584 5.451l-.93 3.398 3.506-.92zm9.749-6.342c-.252-.127-1.487-.734-1.718-.817-.23-.084-.398-.127-.566.127-.168.253-.649.817-.796.985-.147.168-.293.189-.545.063-.252-.127-1.064-.392-2.026-1.25-.748-.667-1.252-1.491-1.399-1.744-.147-.253-.016-.39.11-.515.112-.113.252-.295.378-.442.126-.147.167-.253.252-.421.084-.168.042-.316-.021-.442-.063-.127-.566-1.366-.775-1.871-.204-.494-.41-.427-.566-.435-.146-.008-.314-.01-.482-.01s-.441.063-.672.316c-.231.253-.881.861-.881 2.098s.903 2.435 1.028 2.604c.126.168 1.777 2.714 4.305 3.805.602.26 1.071.415 1.438.532.604.192 1.154.165 1.588.1.484-.072 1.487-.608 1.697-1.196.209-.588.209-1.092.147-1.196-.063-.105-.231-.168-.483-.295z"/></svg>
-            <span>Chat with Admin</span>
-        </div>
-    </div>
-</a>
+
 
 <div id="admin-panel" style="display: none; max-width: 1000px; margin: 20px auto 100px; padding: 40px; background: #0f172a; color: white; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
     <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 30px;">
