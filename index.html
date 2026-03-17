@@ -413,6 +413,38 @@ function unlockAdmin() {
     newEntry.innerText = `[SUCCESS] ₦${amount} - ${new Date().toLocaleTimeString()}`;
     logList.prepend(newEntry);
 */
+    let totalMoney = 0;
+
+// The function that unlocks the dashboard
+function unlockAdmin() {
+    const access = prompt("Enter Master Password:");
+    if (access === "alwarith") {
+        const panel = document.getElementById('admin-panel');
+        panel.style.display = 'block';
+        panel.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        alert("Access Denied. Unauthorized entry attempt recorded.");
+    }
+}
+
+// Make sure your Paystack callback updates the dashboard
+// When you get your Paystack code, ensure it looks like this:
+/*
+    callback: function(response) {
+        alert('Payment Successful!');
+        totalMoney += amount; 
+        document.getElementById('total-revenue').innerText = "₦" + totalMoney.toLocaleString();
+        
+        const log = document.getElementById('sales-log-list');
+        const entry = document.createElement('div');
+        entry.style.borderBottom = "1px solid rgba(255,255,255,0.05)";
+        entry.style.padding = "5px 0";
+        entry.innerText = `[SALE] ₦${amount} - ${new Date().toLocaleTimeString()}`;
+        
+        if (log.innerText.includes("No sales")) log.innerHTML = "";
+        log.prepend(entry);
+    }
+*/
 </script>
   <footer>
         <span class="footer-logo">HDSVAULT</span>
@@ -430,5 +462,31 @@ function unlockAdmin() {
         </div>
     </div>
 </a>
+    <div style="width: 100%; padding: 60px 0; background: #f8fafc; text-align: center; border-top: 1px dashed #e2e8f0;">
+    <button onclick="unlockAdmin()" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #94a3b8; padding: 8px 20px; border-radius: 8px; font-size: 0.75rem; cursor: pointer; font-weight: 600;">
+        Portal Management System v1.0
+    </button>
+</div>
+
+<div id="admin-panel" style="display: none; max-width: 1000px; margin: 20px auto 100px; padding: 40px; background: #0f172a; color: white; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 30px;">
+        <h2 style="font-size: 1.5rem;">HDS Vault Dashboard</h2>
+        <button onclick="this.parentElement.parentElement.style.display='none'" style="background: #ef4444; color: white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: bold;">Close Dashboard</button>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+        <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
+            <p style="color: #818cf8; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px;">Total Revenue</p>
+            <h1 id="total-revenue" style="font-size: 2rem;">₦0.00</h1>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
+            <p style="color: #34d399; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px;">Sales Logs</p>
+            <div id="sales-log-list" style="max-height: 150px; overflow-y: auto; font-size: 0.85rem; color: #94a3b8;">
+                No sales recorded yet...
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
