@@ -3,523 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HDS Vault | Premium Research Materials</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>HDS Vault | University of Ilorin</title>
     <style>
-    /* 1. Reset & Global - Keeps the 'Soup' from spreading */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+        /* 1. THE FOUNDATION */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #0f172a; font-family: 'Segoe UI', sans-serif; color: #1e293b; line-height: 1.6; overflow-x: hidden; }
 
-body { 
-    background-color: #0f172a; 
-    font-family: 'Inter', sans-serif; 
-    color: #334155;
-    line-height: 1.6;
-}
+        /* 2. THE NAVIGATION */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: white; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-weight: 800; color: #4338ca; font-size: 1.5rem; text-decoration: none; }
+        .nav-links a { text-decoration: none; color: #64748b; margin-left: 20px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: #4338ca; }
 
-/* 2. Navbar Fix - Makes links horizontal and clean */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    background: white;
-    position: fixed;
-    top: 0; width: 100%; z-index: 1000;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-}
+        /* 3. THE HERO (Pushes the 'Mash' away) */
+        .hero { padding: 160px 20px 100px 20px; text-align: center; color: white; background: #0f172a; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+        .cta-main { display: inline-block; background: #f59e0b; color: #0f172a; padding: 18px 35px; border-radius: 12px; text-decoration: none; font-weight: 800; margin-top: 30px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2); }
 
-nav a {
-    text-decoration: none;
-    color: #0f172a;
-    margin-left: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
+        /* 4. THE WHITE SECTIONS */
+        section { width: 92%; max-width: 1100px; margin: -50px auto 60px auto; padding: 60px 30px; background: white; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); position: relative; z-index: 10; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; }
 
-/* 3. Hero Fix - Gives the Yellow Button space */
-.hero {
-    padding: 160px 20px 80px 20px;
-    text-align: center;
-    background: #0f172a;
-    color: white;
-}
+        /* 5. THE GRID (Stacking Fix) */
+        .responsive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { border: 1px solid #f1f5f9; padding: 30px; border-radius: 20px; background: #f8fafc; text-align: center; }
+        .price { font-size: 1.8rem; font-weight: 800; margin: 20px 0; color: #0f172a; }
 
-.cta-main {
-    display: inline-block;
-    background: #f59e0b;
-    color: #0f172a;
-    padding: 18px 35px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 30px;
-    margin-bottom: 60px; /* Pushes the white section away */
-}
+        /* 6. ADMIN SECURITY (Hidden) */
+        #admin-panel { display: none; background: #f1f5f9; padding: 40px; margin-top: 50px; border-radius: 20px; }
 
-/* 4. Section Fix - The 'Vault' and 'Reviews' white boxes */
-section {
-    width: 90%;
-    max-width: 1100px;
-    margin: 0 auto 40px auto;
-    padding: 50px 30px;
-    background: white;
-    border-radius: 24px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    position: relative;
-}
+        /* 7. WHATSAPP */
+        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: white; text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.2); z-index: 1000; }
 
-/* 5. Grid Fix - Stacks on Phone, Side-by-Side on PC */
-.responsive-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-@media (min-width: 768px) {
-    .responsive-grid {
-        flex-direction: row;
-        justify-content: center;
-    }
-}
-
-/* 6. Admin Security - Keeps the back-end hidden */
-#admin-panel, .admin-section { display: none; }
-
-/* 7. WhatsApp Floating Button */
-.whatsapp-float {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 999;
-}
-     </style>
+        /* MOBILE TWEAKS */
+        @media (max-width: 768px) { .hero h1 { font-size: 1.8rem; } section { padding: 40px 20px; } }
+    </style>
 </head>
 <body>
-     <nav>
-        <div class="logo">HDSVAULT</div>
-        <ul class="nav-links">
-            <li><a href="#catalog">Catalog</a></li>
-            <li><a href="#reviews">Reviews</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+
+    <nav>
+        <a href="#" class="logo">HDSVAULT</a>
+        <div class="nav-links">
+            <a href="#catalog">Catalog</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
-    
-    <div id="movableChat" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000; cursor: move; touch-action: none;">
-    <a href="https://wa.me/2348133116062" target="_blank" style="text-decoration: none;">
-        <div style="background: #25D366; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.319 1.592 5.448 0 9.886-4.438 9.889-9.887.002-5.462-4.415-9.89-9.881-9.891-5.446 0-9.884 4.438-9.887 9.887-.001 2.22.634 3.813 1.584 5.451l-.93 3.398 3.506-.92zm9.749-6.342c-.252-.127-1.487-.734-1.718-.817-.23-.084-.398-.127-.566.127-.168.253-.649.817-.796.985-.147.168-.293.189-.545.063-.252-.127-1.064-.392-2.026-1.25-.748-.667-1.252-1.491-1.399-1.744-.147-.253-.016-.39.11-.515.112-.113.252-.295.378-.442.126-.147.167-.253.252-.421.084-.168.042-.316-.021-.442-.063-.127-.566-1.366-.775-1.871-.204-.494-.41-.427-.566-.435-.146-.008-.314-.01-.482-.01s-.441.063-.672.316c-.231.253-.881.861-.881 2.098s.903 2.435 1.028 2.604c.126.168 1.777 2.714 4.305 3.805.602.26 1.071.415 1.438.532.604.192 1.154.165 1.588.1.484-.072 1.487-.608 1.697-1.196.209-.588.209-1.092.147-1.196-.063-.105-.231-.168-.483-.295z"/></svg>
-        </div>
-    </a>
-</div>
-   <div id="sales-notif">
-    <span style="font-size: 1.2rem;">✅</span>
-    <div style="line-height: 1.2;">
-        <p id="notif-text" style="font-size: 0.75rem; font-weight: 700; color: #0f172a; margin: 0;"></p>
-        <p style="font-size: 0.65rem; color: #64748b; margin: 0;">Verified Purchase</p>
-    </div>
-</div>
 
-   
-<header class="hero">
-    <h1>Finish Your Project Without the Stress</h1>
-    <p>Get instant access to vetted, complete, and high-scoring materials.</p>
-    <a href="#catalog" class="cta-main" style="background: #f59e0b; color: #0f172a; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold;">
-        Browse Premium Materials
-    </a>
-</header>
-    <h2 class="section-title">The Research Vault</h2>
-    <p class="section-subtitle">Select a project to download immediately.</p>
-    
-    <div class="responsive-grid">
-        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; transition: transform 0.3s;">
-            <h3 style="color: #2563eb;">Standard HDS Project</h3>
-            <p style="color: #475569; margin: 15px 0;">Complete Chapters 1-5, Questionnaire, and References for standard research topics.</p>
-            <div style="font-size: 1.8rem; font-weight: 800; margin-bottom: 20px;">₦5,000</div>
-            <button onclick="handlePay(5000, 'Standard')" style="width: 100%; background: #0f172a; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">Get Instant Access</button>
-        </div>
-
-        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
-            <h3 style="color: #2563eb;">Premium Case Study</h3>
-            <p style="color: #475569; margin: 15px 0;">Advanced analysis of Nigeria's Foreign Policy and Diplomatic Relations (2026 Edition).</p>
-            <div style="font-size: 1.8rem; font-weight: 800; margin-bottom: 20px;">₦7,500</div>
-            <button onclick="handlePay(7500, 'Premium')" style="width: 100%; background: #0f172a; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">Get Instant Access</button>
-        </div>
-    </div>
-            <section id="reviews" style="background-color: #f8fafc;">
-    <h2 class="section-title">Student Success Stories</h2>
-    
-    <div class="responsive-grid">
-        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #2563eb;">
-            <p style="font-style: italic; color: #334155;">"I was struggling with my methodology until I found this vault. It's a lifesaver!"</p>
-            <p style="margin-top: 15px; font-weight: bold; color: #0f172a;">— Segun, Final Year Student</p>
-        </div>
-        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #2563eb;">
-            <p style="font-style: italic; color: #334155;">"Payment was fast and I got the download link in 2 seconds. Truly professional."</p>
-            <p style="margin-top: 15px; font-weight: bold; color: #0f172a;">— Fatima, HDS Dept</p>
-        </div>
-    </div>
-              <section id="contact" style="padding: 80px 20px; text-align: center; border-top: 1px solid #e2e8f0; background: white;">
-    <h2 class="section-title">Need Help?</h2>
-    <p class="section-subtitle">Having trouble with your download or need a custom topic? We're here for you.</p>
-    
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
-        <a href="mailto:support@hdsvault.com" style="text-decoration: none; color: #0f172a; font-weight: bold; padding: 12px 25px; border: 1px solid #e2e8f0; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
-            <span>📧</span> Email Support
-        </a>
-        <!-- <a href="https://wa.me/2348133116062" target="_blank" style="text-decoration: none; color: white; background: #25D366; font-weight: bold; padding: 12px 25px; border-radius: 8px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);">
-            <span>💬</span> WhatsApp Us
-        </a> -->
-    </div>
-    
-    <p style="margin-top: 40px; color: #94a3b8; font-size: 0.8rem;">&copy; 2026 HDS Vault. All Rights Reserved for Kwara State Students.</p>
-</section>
-</section>
-</section>
-</section>
+    <header class="hero">
+        <h1>Finish Your Project Without the Stress</h1>
+        <p>Get instant access to vetted, complete, and high-scoring research materials.</p>
+        <a href="#catalog" class="cta-main">Browse Premium Materials</a>
     </header>
 
-    <div class="how-it-works">
-        <div class="step-card">
-            <span>🔍</span>
-            <h4>Find Topic</h4>
-            <p style="font-size: 0.85rem; color: var(--slate); margin-top: 10px;">Search through our list of pre-approved research topics.</p>
-        </div>
-        <div class="step-card">
-            <span>💳</span>
-            <h4>Pay Securely</h4>
-            <p style="font-size: 0.85rem; color: var(--slate); margin-top: 10px;">Pay using Paystack (Bank Transfer, Card, or USSD).</p>
-        </div>
-        <div class="step-card">
-            <span>📥</span>
-            <h4>Instant Download</h4>
-            <p style="font-size: 0.85rem; color: var(--slate); margin-top: 10px;">Get the full PDF material delivered to your email instantly.</p>
-        </div>
-    </div>
-<section class="catalog" id="catalog">
-    <div class="section-header">
-        <div>
-            <span style="color:var(--primary); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">Premium Selection</span>
-            <h2>Research Catalog</h2>
-        </div>
-    </div>
-
-   <div class="product-grid">
-        <div class="product-card">
-            <span class="cat-tag">Foreign Policy</span>
-            <h3 class="title">Nigeria’s Afrocentric Foreign Policy: A Historical Analysis (1960 - 2026)</h3>
-            <div class="price">₦5,000</div>
-            
-            <div style="margin-bottom: 15px;">
-                <label style="font-size: 0.75rem; font-weight: 600; color: var(--slate); display: block; margin-bottom: 5px;">Delivery Email Address</label>
-                <input type="email" id="email-1" placeholder="example@gmail.com" 
-                       style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; outline: none; font-size: 0.9rem;">
+    <section id="catalog">
+        <h2 class="section-title">The Research Vault</h2>
+        <div class="responsive-grid">
+            <div class="card">
+                <h3>Standard HDS Project</h3>
+                <p>Complete Chapters 1-5, Questionnaire, and References for standard topics.</p>
+                <div class="price">₦5,000</div>
+                <button onclick="handlePay(5000, 'Standard')" style="width:100%; background:#0f172a; color:white; padding:15px; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">Get Instant Access</button>
             </div>
-
-            <button class="btn-buy" onclick="handlePay(5000, 'Afrocentric Policy', 'email-1')">Purchase & Download</button>
-            <p style="font-size: 0.7rem; color: var(--slate); text-align: center; margin-top: 10px;">🔒 Secure Payment via Paystack</p>
-        </div>
-
-        <div class="product-card">
-            <span class="cat-tag">Conflict Studies</span>
-            <h3 class="title">The Evolution of Non-State Actors in West African Security: 2015-2025</h3>
-            <div class="price">₦7,500</div>
-            
-            <div style="margin-bottom: 15px;">
-                <label style="font-size: 0.75rem; font-weight: 600; color: var(--slate); display: block; margin-bottom: 5px;">Delivery Email Address</label>
-                <input type="email" id="email-2" placeholder="example@gmail.com" 
-                       style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; outline: none; font-size: 0.9rem;">
-            </div>
-
-            <button class="btn-buy" onclick="handlePay(7500, 'Non-State Actors', 'email-2')">Purchase & Download</button>
-            <p style="font-size: 0.7rem; color: var(--slate); text-align: center; margin-top: 10px;">🔒 Secure Payment via Paystack</p>
-        </div>
-    </div>
-</section>
-    <div class="container" style="text-align: center; margin-bottom: 40px;">
-    <button onclick="unlockAdmin()" style="background:none; border:none; color:#cbd5e1; font-size:0.6rem; cursor:pointer; opacity:0.3;">
-        Master Dashboard Access
-    </button>
-</div>
-
-<div id="admin-panel" style="display:none;">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-        <h2>Admin Business Logs</h2>
-        <button onclick="this.parentElement.parentElement.style.display='none'" style="background:none; border:none; color:red; cursor:pointer;">Close ×</button>
-    </div>
-    
-    <div class="admin-grid">
-        <div class="admin-card">
-            <small style="color: #6366f1; font-weight: 700;">TOTAL REVENUE</small>
-            <h2 id="total-revenue" style="margin-top:10px;">₦0.00</h2>
-        </div>
-        <div class="admin-card">
-            <small style="color: #22c55e; font-weight: 700;">SALES LOGS</small>
-            <div id="sales-log-list" style="margin-top:10px; max-height: 150px; overflow-y: auto;">
-                <p class="log-item">No sales recorded yet...</p>
+            <div class="card">
+                <h3>Premium Case Study</h3>
+                <p>Advanced analysis of Nigeria's Foreign Policy and Diplomatic Relations (2026 Edition).</p>
+                <div class="price">₦7,500</div>
+                <button onclick="handlePay(7500, 'Premium')" style="width:100%; background:#4338ca; color:white; padding:15px; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">Get Instant Access</button>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
-<script>
-    function handlePay(amount, itemName, emailId) {
-        const emailField = document.getElementById(emailId);
-        const userEmail = emailField.value;
-        
-        // Basic validation
-        if (!userEmail || !userEmail.includes("@")) {
-            emailField.style.borderColor = "#ef4444"; // Turn red if empty/wrong
-            alert("Please enter a valid email address to receive your material.");
-            return;
+    <a href="https://wa.me/2348133116062" class="whatsapp-float" target="_blank">💬</a>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        function handlePay(amount, type) {
+            alert("Proceeding to pay ₦" + amount + " for the " + type + " project.");
+            // Add your Paystack setup here
         }
+    </script>
 
-        emailField.style.borderColor = "#e2e8f0"; // Reset color
-
-        let handler = PaystackPop.setup({
-            key: 'pk_test_YOUR_ACTUAL_KEY_HERE', // Put your Public Key here
-            email: userEmail,
-            amount: amount * 100, 
-            currency: "NGN",
-            ref: 'HDS-' + Math.floor((Math.random() * 1000000000) + 1), 
-            callback: function(response){
-                alert('Payment Successful! Reference: ' + response.reference);
-                // Here is where you link to the actual file download
-                window.location.href = "https://your-site.com/success"; 
-            },
-            onClose: function(){
-                console.log('User closed the window');
-            }
-        });
-        handler.openIframe();
-    }
-    // This function creates the "fake" purchase alerts
-function runLiveBackend() {
-    const names = ["Anjola", "Bisi", "John", "Amina", "Suleiman", "Tolu"];
-    const topics = ["Foreign Policy", "ECOWAS Guide", "Security Project", "Diplomacy Material"];
-    
-    const randomName = names[Math.floor(Math.random() * names.length)];
-    const randomTopic = topics[Math.floor(Math.random() * topics.length)];
-    
-    // Update the text
-    document.getElementById('notif-text').innerText = `${randomName} just bought ${randomTopic}`;
-    
-    // Show it
-    const notif = document.getElementById('sales-notif');
-    notif.classList.add('active');
-    
-    // Hide it again after 5 seconds
-    setTimeout(() => {
-        notif.classList.remove('active');
-    }, 5000);
-}
-
-// Start the loop - triggers every 30 seconds
-setInterval(runLiveBackend, 30000); 
-
-// Show the first one after 3 seconds so you can see it working immediately
-setTimeout(runLiveBackend, 3000);
-    let totalMoney = 0;
-
-// 1. Function to unlock the dashboard
-function unlockAdmin() {
-    const access = prompt("Enter Master Password:");
-    if (access === "alwarith") {
-        document.getElementById('admin-panel').style.display = 'block';
-        document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
-    } else {
-        alert("Access Denied.");
-    }
-}
-
-// 2. Updated Payment Logger (Add this inside your Paystack 'callback' function)
-// Find your current Paystack callback and add these lines inside it:
-/*
-    totalMoney += amount; 
-    document.getElementById('total-revenue').innerText = "₦" + totalMoney.toLocaleString();
-    
-    const logList = document.getElementById('sales-log-list');
-    const newEntry = document.createElement('div');
-    newEntry.className = 'log-item';
-    newEntry.innerText = `[SUCCESS] ₦${amount} - ${new Date().toLocaleTimeString()}`;
-    logList.prepend(newEntry);
-*/
-    let totalMoney = 0;
-
-// The function that unlocks the dashboard
-function unlockAdmin() {
-    const access = prompt("Enter Master Password:");
-    if (access === "alwarith") {
-        const panel = document.getElementById('admin-panel');
-        panel.style.display = 'block';
-        panel.scrollIntoView({ behavior: 'smooth' });
-    } else {
-        alert("Access Denied. Unauthorized entry attempt recorded.");
-    }
-}
-
-// Make sure your Paystack callback updates the dashboard
-// When you get your Paystack code, ensure it looks like this:
-/*
-    callback: function(response) {
-        alert('Payment Successful!');
-        totalMoney += amount; 
-        document.getElementById('total-revenue').innerText = "₦" + totalMoney.toLocaleString();
-        
-        const log = document.getElementById('sales-log-list');
-        const entry = document.createElement('div');
-        entry.style.borderBottom = "1px solid rgba(255,255,255,0.05)";
-        entry.style.padding = "5px 0";
-        entry.innerText = `[SALE] ₦${amount} - ${new Date().toLocaleTimeString()}`;
-        
-        if (log.innerText.includes("No sales")) log.innerHTML = "";
-        log.prepend(entry);
-    }
-*/
-</script>
-  <footer>
-        <span class="footer-logo">HDSVAULT</span>
-        <p>&copy; 2026 HDS Research Vault. All rights reserved.</p>
-        <p style="font-size: 0.75rem; margin-top: 10px;">Designed for History & Diplomatic Studies Finalists.</p>
-    </footer>
-
-
-<div id="admin-panel" style="display: none; max-width: 1000px; margin: 20px auto 100px; padding: 40px; background: #0f172a; color: white; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
-    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 30px;">
-        <h2 style="font-size: 1.5rem;">HDS Vault Dashboard</h2>
-        <button onclick="this.parentElement.parentElement.style.display='none'" style="background: #ef4444; color: white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: bold;">Close Dashboard</button>
-    </div>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-        <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
-            <p style="color: #818cf8; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px;">Total Revenue</p>
-            <h1 id="total-revenue" style="font-size: 2rem;">₦0.00</h1>
-        </div>
-        
-        <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
-            <p style="color: #34d399; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px;">Sales Logs</p>
-            <div id="sales-log-list" style="max-height: 150px; overflow-y: auto; font-size: 0.85rem; color: #94a3b8;">
-                No sales recorded yet...
-            </div>
-        </div>
-    </div>
-</div>
-    <div style="width: 100%; padding: 80px 0; background: #f8fafc; text-align: center; border-top: 1px dashed #cbd5e1;">
-    <button id="adminBtn" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #94a3b8; padding: 10px 25px; border-radius: 8px; font-size: 0.75rem; cursor: pointer; font-weight: 600;">
-        Portal Management System v1.0
-    </button>
-</div>
-
-<div id="admin-panel" style="display: none; max-width: 900px; margin: 20px auto 100px; padding: 30px; background: #0f172a; color: white; border-radius: 20px; font-family: sans-serif;">
-    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid #1e293b; padding-bottom: 15px; margin-bottom: 20px;">
-        <h2 style="font-size: 1.2rem;">HDS Vault Business Dashboard</h2>
-        <button onclick="document.getElementById('admin-panel').style.display='none'" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Close</button>
-    </div>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-        <div style="background: #1e293b; padding: 20px; border-radius: 12px;">
-            <p style="color: #818cf8; font-size: 0.7rem; font-weight: 700;">TOTAL REVENUE</p>
-            <h1 id="total-revenue" style="font-size: 1.8rem; margin-top: 5px;">₦0.00</h1>
-        </div>
-        <div style="background: #1e293b; padding: 20px; border-radius: 12px;">
-            <p style="color: #34d399; font-size: 0.7rem; font-weight: 700;">SALES LOG</p>
-            <div id="sales-log-list" style="max-height: 100px; overflow-y: auto; font-size: 0.8rem; margin-top: 10px; color: #94a3b8;">
-                Waiting for transactions...
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // We target the button specifically by its ID
-    document.getElementById('adminBtn').onclick = function() {
-        const password = prompt("Enter Master Password:");
-        
-        if (password === "alwarith") {
-            const dashboard = document.getElementById('admin-panel');
-            dashboard.style.display = 'block';
-            dashboard.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            alert("Incorrect Password.");
-        }
-    };
-
-    // Global variable to track money
-    let totalBusinessRevenue = 0;
-
-    // Use this function inside your Paystack callback later
-    function logSale(amount) {
-        totalBusinessRevenue += amount;
-        document.getElementById('total-revenue').innerText = "₦" + totalBusinessRevenue.toLocaleString();
-        
-        const log = document.getElementById('sales-log-list');
-        const entry = document.createElement('div');
-        entry.style.padding = "5px 0";
-        entry.style.borderBottom = "1px solid #334155";
-        entry.innerText = `[SUCCESS] ₦${amount} - ${new Date().toLocaleTimeString()}`;
-        
-        if (log.innerText.includes("Waiting")) log.innerHTML = "";
-        log.prepend(entry);
-    }
-    // Add this to your existing <script> section
-const chat = document.getElementById("movableChat");
-let isDragging = false;
-
-chat.onmousedown = function(e) {
-    isDragging = true;
-    let shiftX = e.clientX - chat.getBoundingClientRect().left;
-    let shiftY = e.clientY - chat.getBoundingClientRect().top;
-
-    document.onmousemove = function(e) {
-        if (!isDragging) return;
-        chat.style.left = e.clientX - shiftX + 'px';
-        chat.style.top = e.clientY - shiftY + 'px';
-        chat.style.bottom = 'auto'; 
-        chat.style.right = 'auto'; 
-    };
-
-    document.onmouseup = function() {
-        isDragging = false;
-        document.onmousemove = null;
-    };
-};
-
-// Touch support for mobile phones
-chat.ontouchmove = function(e) {
-    let touch = e.touches[0];
-    chat.style.left = touch.clientX - 25 + 'px';
-    chat.style.top = touch.clientY - 25 + 'px';
-    chat.style.bottom = 'auto';
-    chat.style.right = 'auto';
-};
-    function triggerNotification() {
-    const students = ["Anjola", "Bisi", "John", "Ahmed", "Tunde", "Amina", "Chidi", "Victory"];
-    const projects = ["Foreign Policy Guide", "ECOWAS Material", "Security Case Study", "Diplomatic History"];
-    
-    const randomName = students[Math.floor(Math.random() * students.length)];
-    const randomProject = projects[Math.floor(Math.random() * projects.length)];
-    
-    const notifElement = document.getElementById('sales-notif');
-    const textElement = document.getElementById('notif-text');
-    
-    if (notifElement && textElement) {
-        textElement.innerText = `${randomName} just bought ${randomProject}`;
-        
-        // Slide in
-        notifElement.classList.add('active');
-        
-        // Slide out after 5 seconds
-        setTimeout(() => {
-            notifElement.classList.remove('active');
-        }, 5000);
-    }
-}
-
-// 1. Show the first one 3 seconds after page loads
-setTimeout(triggerNotification, 3000);
-
-// 2. Show a new one every 40 seconds
-setInterval(triggerNotification, 40000);
-</script>
 </body>
 </html>
