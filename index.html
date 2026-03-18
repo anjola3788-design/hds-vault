@@ -7,6 +7,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Styling for your secret dashboard */
+
+        /* Container for all sections */
+section {
+    padding: 80px 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+    scroll-margin-top: 80px; /* Essential: prevents the Nav Bar from covering the section title when clicking links */
+}
+
+/* Responsive Grid for Catalog & Reviews */
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Section Titles */
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+/* Smooth Scrolling for the whole page */
+html {
+    scroll-behavior: smooth;
+}
 #admin-panel {
     display: none; /* Stays hidden until you login */
     max-width: 1100px;
@@ -228,6 +263,15 @@
 }    </style>
 </head>
 <body>
+     <nav>
+        <div class="logo">HDSVAULT</div>
+        <ul class="nav-links">
+            <li><a href="#catalog">Catalog</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
     <div id="movableChat" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000; cursor: move; touch-action: none;">
     <a href="https://wa.me/2348133116062" target="_blank" style="text-decoration: none;">
         <div style="background: #25D366; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
@@ -243,19 +287,63 @@
     </div>
 </div>
 
-    <nav>
-        <div class="logo">HDSVAULT</div>
-        <ul class="nav-links">
-            <li><a href="#">Catalog</a></li>
-            <li><a href="#">Reviews</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+   
 
     <header class="hero">
         <h1>Finish Your Project Without the Stress</h1>
         <p>Get instant access to vetted, complete, and high-scoring History & Diplomatic Studies research materials. Written by finalists, for finalists.</p>
         <a href="#catalog" class="cta-main">Browse Premium Materials</a>
+        <section id="catalog">
+    <h2 class="section-title">The Research Vault</h2>
+    <p class="section-subtitle">Select a project to download immediately.</p>
+    
+    <div class="responsive-grid">
+        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; transition: transform 0.3s;">
+            <h3 style="color: #2563eb;">Standard HDS Project</h3>
+            <p style="color: #475569; margin: 15px 0;">Complete Chapters 1-5, Questionnaire, and References for standard research topics.</p>
+            <div style="font-size: 1.8rem; font-weight: 800; margin-bottom: 20px;">₦5,000</div>
+            <button onclick="handlePay(5000, 'Standard')" style="width: 100%; background: #0f172a; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">Get Instant Access</button>
+        </div>
+
+        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+            <h3 style="color: #2563eb;">Premium Case Study</h3>
+            <p style="color: #475569; margin: 15px 0;">Advanced analysis of Nigeria's Foreign Policy and Diplomatic Relations (2026 Edition).</p>
+            <div style="font-size: 1.8rem; font-weight: 800; margin-bottom: 20px;">₦7,500</div>
+            <button onclick="handlePay(7500, 'Premium')" style="width: 100%; background: #0f172a; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">Get Instant Access</button>
+        </div>
+    </div>
+            <section id="reviews" style="background-color: #f8fafc;">
+    <h2 class="section-title">Student Success Stories</h2>
+    
+    <div class="responsive-grid">
+        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #2563eb;">
+            <p style="font-style: italic; color: #334155;">"I was struggling with my methodology until I found this vault. It's a lifesaver!"</p>
+            <p style="margin-top: 15px; font-weight: bold; color: #0f172a;">— Segun, Final Year Student</p>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #2563eb;">
+            <p style="font-style: italic; color: #334155;">"Payment was fast and I got the download link in 2 seconds. Truly professional."</p>
+            <p style="margin-top: 15px; font-weight: bold; color: #0f172a;">— Fatima, HDS Dept</p>
+        </div>
+    </div>
+              <section id="contact" style="padding: 80px 20px; text-align: center; border-top: 1px solid #e2e8f0; background: white;">
+    <h2 class="section-title">Need Help?</h2>
+    <p class="section-subtitle">Having trouble with your download or need a custom topic? We're here for you.</p>
+    
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+        <a href="mailto:support@hdsvault.com" style="text-decoration: none; color: #0f172a; font-weight: bold; padding: 12px 25px; border: 1px solid #e2e8f0; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+            <span>📧</span> Email Support
+        </a>
+        
+        <a href="https://wa.me/2348133116062" target="_blank" style="text-decoration: none; color: white; background: #25D366; font-weight: bold; padding: 12px 25px; border-radius: 8px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);">
+            <span>💬</span> WhatsApp Us
+        </a>
+    </div>
+    
+    <p style="margin-top: 40px; color: #94a3b8; font-size: 0.8rem;">&copy; 2026 HDS Vault. All Rights Reserved for Kwara State Students.</p>
+</section>
+</section>
+</section>
+</section>
     </header>
 
     <div class="how-it-works">
@@ -283,7 +371,7 @@
         </div>
     </div>
 
-    <div class="product-grid">
+   <div class="product-grid">
         <div class="product-card">
             <span class="cat-tag">Foreign Policy</span>
             <h3 class="title">Nigeria’s Afrocentric Foreign Policy: A Historical Analysis (1960 - 2026)</h3>
