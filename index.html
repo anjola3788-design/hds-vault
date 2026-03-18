@@ -6,22 +6,39 @@
     <title>HDS Vault | Premium Research Materials</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* 1. Global Reset - This fixes the 'overlapping' on phones */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    /* 1. Reset & Global - Keeps the 'Soup' from spreading */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    background-color: #0f172a; 
+    font-family: 'Inter', sans-serif; 
+    color: #334155;
+    line-height: 1.6;
 }
 
-body {
-    background-color: #0f172a; /* Dark blue background like your hero */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-x: hidden; /* Prevents side-scrolling on small phones */
+/* 2. Navbar Fix - Makes links horizontal and clean */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: white;
+    position: fixed;
+    top: 0; width: 100%; z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
-/* 2. Hero Section Fix - Adding space below the button */
+nav a {
+    text-decoration: none;
+    color: #0f172a;
+    margin-left: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* 3. Hero Fix - Gives the Yellow Button space */
 .hero {
-    padding: 120px 20px 60px 20px; /* Top, Right, Bottom, Left */
+    padding: 160px 20px 80px 20px;
     text-align: center;
     background: #0f172a;
     color: white;
@@ -29,59 +46,51 @@ body {
 
 .cta-main {
     display: inline-block;
-    margin-top: 20px;
-    margin-bottom: 40px; /* This creates the space between button and white section */
+    background: #f59e0b;
+    color: #0f172a;
+    padding: 18px 35px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 60px; /* Pushes the white section away */
 }
 
-/* 3. The Section Fix - Ensuring it doesn't 'touch' or overlap */
+/* 4. Section Fix - The 'Vault' and 'Reviews' white boxes */
 section {
-    width: 90%; /* On phone, it fills 90% of screen */
-    max-width: 1100px; /* On PC, it stays neat */
-    margin: 0 auto 40px auto; /* Centers the section and adds space at the bottom */
-    padding: 40px 20px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto 40px auto;
+    padding: 50px 30px;
     background: white;
-    border-radius: 20px; /* Rounded corners like in your photo */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    position: relative; /* Keeps it in the normal flow of the page */
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    position: relative;
 }
 
-/* 4. The Grid Fix - Stacking perfectly on EVERY phone */
+/* 5. Grid Fix - Stacks on Phone, Side-by-Side on PC */
 .responsive-grid {
     display: flex;
-    flex-direction: column; /* Stack by default for phones */
-    gap: 25px;
+    flex-direction: column;
+    gap: 30px;
 }
 
-/* 5. PC Adjustment - Side-by-side only on big screens */
 @media (min-width: 768px) {
     .responsive-grid {
-        flex-direction: row; /* Go side-by-side on laptops */
+        flex-direction: row;
         justify-content: center;
     }
-    section {
-        width: 85%;
-        padding: 60px;
-    }
-}
-        /* Hide the Admin Panel and old elements by default */
-#admin-panel, .admin-section, #research-catalog {
-    display: none;
 }
 
-/* Fix the Navigation Links - they turned blue/purple */
-nav a {
-    text-decoration: none;
-    color: #0f172a;
-    margin: 0 15px;
-    font-weight: 500;
-}
+/* 6. Admin Security - Keeps the back-end hidden */
+#admin-panel, .admin-section { display: none; }
 
-/* Ensure the floating WhatsApp stays in the corner */
+/* 7. WhatsApp Floating Button */
 .whatsapp-float {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999;
 }
      </style>
 </head>
