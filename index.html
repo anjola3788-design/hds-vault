@@ -63,6 +63,26 @@ section {
         padding: 60px;
     }
 }
+        /* Hide the Admin Panel and old elements by default */
+#admin-panel, .admin-section, #research-catalog {
+    display: none;
+}
+
+/* Fix the Navigation Links - they turned blue/purple */
+nav a {
+    text-decoration: none;
+    color: #0f172a;
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+/* Ensure the floating WhatsApp stays in the corner */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
      </style>
 </head>
 <body>
@@ -212,7 +232,7 @@ section {
     </button>
 </div>
 
-<div id="admin-panel">
+<div id="admin-panel" style="display:none;">
     <div style="display:flex; justify-content:space-between; align-items:center;">
         <h2>Admin Business Logs</h2>
         <button onclick="this.parentElement.parentElement.style.display='none'" style="background:none; border:none; color:red; cursor:pointer;">Close ×</button>
