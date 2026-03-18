@@ -6,265 +6,64 @@
     <title>HDS Vault | Premium Research Materials</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-    
-        body {
-    background-color: #e0f2fe; /* Light baby blue, like in your photo */
-}
-/* Container for all sections - Fixing space from the top and bottom */
-section {
-    padding: 100px 10%; /* More top/bottom padding for separation */
-    max-width: 1300px; /* A wider maximum width for the grid to expand into */
-    margin: 0 auto;
-    scroll-margin-top: 80px; /* Keep this smooth-scroll fix */
-    background-color: #ffffff; /* This forces your main sections to be clean white */
-}
-        
-/* Responsive Grid for Catalog & Reviews */
-.responsive-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 50px; 
-    padding: 20px; 
-    margin-top: 50px;
-}
-        
-/* Section Titles */
-.section-title {
-    text-align: center;
-    font-size: 2rem;
-    color: #0f172a;
-    margin-bottom: 10px;
+        /* 1. Global Reset - This fixes the 'overlapping' on phones */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.section-subtitle {
-    text-align: center;
-    color: #64748b;
-    margin-bottom: 30px;
+body {
+    background-color: #0f172a; /* Dark blue background like your hero */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden; /* Prevents side-scrolling on small phones */
 }
 
-/* Smooth Scrolling for the whole page */
-html {
-    scroll-behavior: smooth;
-}
-#admin-panel {
-    display: none; /* Stays hidden until you login */
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 30px;
+/* 2. Hero Section Fix - Adding space below the button */
+.hero {
+    padding: 120px 20px 60px 20px; /* Top, Right, Bottom, Left */
+    text-align: center;
     background: #0f172a;
     color: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
 
-.admin-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+.cta-main {
+    display: inline-block;
     margin-top: 20px;
+    margin-bottom: 40px; /* This creates the space between button and white section */
 }
 
-.admin-card {
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.log-item {
-    font-size: 0.8rem;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    color: #94a3b8;
-}
-        :root {
-            --primary: #4f46e5;
-            --secondary: #6366f1;
-            --accent: #f59e0b;
-            --success: #22c55e;
-            --dark: #0f172a;
-            --slate: #64748b;
-            --white: #ffffff;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: #f8fafc; color: var(--dark); line-height: 1.6; }
-
-        /* --- NAVIGATION --- */
-        nav {
-            background: var(--white);
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #e2e8f0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo { font-weight: 800; font-size: 1.4rem; color: var(--primary); letter-spacing: -1px; }
-        .nav-links { display: flex; gap: 20px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--slate); font-weight: 500; font-size: 0.9rem; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-            color: var(--white);
-            padding: 80px 5% 120px;
-            text-align: center;
-        }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 20px; }
-        .hero p { font-size: 1.1rem; opacity: 0.8; max-width: 700px; margin: 0 auto 30px; }
-        .cta-main {
-            background: var(--accent);
-            color: var(--dark);
-            padding: 16px 32px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            transition: 0.3s;
-        }
-        .cta-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3); }
-
-        /* --- HOW IT WORKS --- */
-        .how-it-works {
-            max-width: 1100px;
-            margin: -60px auto 60px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 0 20px;
-        }
-        .step-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        .step-card span { font-size: 2rem; display: block; margin-bottom: 15px; }
-
-        /* --- CATALOG SECTION --- */
-        .catalog { max-width: 1100px; margin: 0 auto 80px; padding: 0 20px; }
-        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
-        .section-header h2 { font-size: 1.8rem; }
-
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
-        .product-card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 30px;
-            border: 1px solid #e2e8f0;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-        .product-card:hover { border-color: var(--primary); transform: translateY(-10px); }
-        
-        .cat-tag { 
-            background: #eef2ff; color: var(--primary); 
-            font-size: 0.75rem; font-weight: 700; padding: 6px 12px; 
-            border-radius: 8px; text-transform: uppercase; 
-        }
-
-        .title { font-size: 1.25rem; font-weight: 700; margin: 15px 0; color: var(--dark); line-height: 1.4; }
-        .price { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 20px; }
-        .price span { font-size: 0.9rem; color: var(--slate); font-weight: 400; }
-
-        .features { list-style: none; margin-bottom: 25px; }
-        .features li { font-size: 0.9rem; color: var(--slate); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .features li::before { content: "✓"; color: var(--success); font-weight: bold; }
-
-        .btn-buy {
-            background: var(--dark);
-            color: var(--white);
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-buy:hover { background: var(--primary); }
-        .whatsapp-chat {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    text-decoration: none;
-    z-index: 1000;
-    transition: 0.3s;
-}
-
-.chat-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-}
-
-.chat-status {
+/* 3. The Section Fix - Ensuring it doesn't 'touch' or overlap */
+section {
+    width: 90%; /* On phone, it fills 90% of screen */
+    max-width: 1100px; /* On PC, it stays neat */
+    margin: 0 auto 40px auto; /* Centers the section and adds space at the bottom */
+    padding: 40px 20px;
     background: white;
-    color: var(--dark);
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: 700;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border: 1px solid #e2e8f0;
-}
-        #movableChat {
-    user-select: none;
-    -webkit-user-drag: none;
-    touch-action: none; /* Crucial for mobile dragging */
+    border-radius: 20px; /* Rounded corners like in your photo */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative; /* Keeps it in the normal flow of the page */
 }
 
-.chat-button {
-    background: #25D366; /* WhatsApp Green */
-    color: white;
-    padding: 12px 20px;
-    border-radius: 50px;
+/* 4. The Grid Fix - Stacking perfectly on EVERY phone */
+.responsive-grid {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 14px;
-    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    flex-direction: column; /* Stack by default for phones */
+    gap: 25px;
 }
 
-.whatsapp-chat:hover { transform: scale(1.05); }
-
-        /* --- FOOTER --- */
-        footer {
-            background: var(--dark);
-            color: rgba(255,255,255,0.6);
-            padding: 60px 5% 30px;
-            text-align: center;
-        }
-        .footer-logo { color: var(--white); font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; display: block; }
-        /* This part keeps the notification hidden in the corner */
-#sales-notif {
-    position: fixed; 
-    bottom: 20px; 
-    left: 20px; 
-    background: white; 
-    padding: 10px 18px;
-    border-radius: 10px; 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    display: flex; 
-    align-items: center; 
-    gap: 10px;
-    transform: translateX(-180%); /* Starts off-screen to the left */
-    transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 9998; /* Just below the WhatsApp button */
-    border-left: 4px solid #22c55e;
-    pointer-events: none; /* So it doesn't block clicks if it's visible */
+/* 5. PC Adjustment - Side-by-side only on big screens */
+@media (min-width: 768px) {
+    .responsive-grid {
+        flex-direction: row; /* Go side-by-side on laptops */
+        justify-content: center;
+    }
+    section {
+        width: 85%;
+        padding: 60px;
+    }
 }
-
-#sales-notif.active { 
-    transform: translateX(0); /* Slides in */
-}    </style>
+     </style>
 </head>
 <body>
      <nav>
@@ -292,12 +91,13 @@ html {
 </div>
 
    
-
-    <header class="hero">
-        <h1>Finish Your Project Without the Stress</h1>
-        <p>Get instant access to vetted, complete, and high-scoring History & Diplomatic Studies research materials. Written by finalists, for finalists.</p>
-        <a href="#catalog" class="cta-main">Browse Premium Materials</a>
-        <section id="catalog">
+<header class="hero">
+    <h1>Finish Your Project Without the Stress</h1>
+    <p>Get instant access to vetted, complete, and high-scoring materials.</p>
+    <a href="#catalog" class="cta-main" style="background: #f59e0b; color: #0f172a; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+        Browse Premium Materials
+    </a>
+</header>
     <h2 class="section-title">The Research Vault</h2>
     <p class="section-subtitle">Select a project to download immediately.</p>
     
@@ -337,9 +137,9 @@ html {
         <a href="mailto:support@hdsvault.com" style="text-decoration: none; color: #0f172a; font-weight: bold; padding: 12px 25px; border: 1px solid #e2e8f0; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
             <span>📧</span> Email Support
         </a>
-        <a href="https://wa.me/2348133116062" target="_blank" style="text-decoration: none; color: white; background: #25D366; font-weight: bold; padding: 12px 25px; border-radius: 8px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);">
+        <!-- <a href="https://wa.me/2348133116062" target="_blank" style="text-decoration: none; color: white; background: #25D366; font-weight: bold; padding: 12px 25px; border-radius: 8px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);">
             <span>💬</span> WhatsApp Us
-        </a>
+        </a> -->
     </div>
     
     <p style="margin-top: 40px; color: #94a3b8; font-size: 0.8rem;">&copy; 2026 HDS Vault. All Rights Reserved for Kwara State Students.</p>
