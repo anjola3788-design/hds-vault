@@ -6,24 +6,28 @@
     <title>HDS Vault | Premium Research Materials</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Styling for your secret dashboard */
-
-        /* Container for all sections */
-section {
-    padding: 80px 10%;
-    max-width: 1200px;
-    margin: 0 auto;
-    scroll-margin-top: 80px; /* Essential: prevents the Nav Bar from covering the section title when clicking links */
+    
+        body {
+    background-color: #e0f2fe; /* Light baby blue, like in your photo */
 }
-
+/* Container for all sections - Fixing space from the top and bottom */
+section {
+    padding: 100px 10%; /* More top/bottom padding for separation */
+    max-width: 1300px; /* A wider maximum width for the grid to expand into */
+    margin: 0 auto;
+    scroll-margin-top: 80px; /* Keep this smooth-scroll fix */
+    background-color: #ffffff; /* This forces your main sections to be clean white */
+}
+        
 /* Responsive Grid for Catalog & Reviews */
 .responsive-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 50px; 
+    padding: 20px; 
+    margin-top: 50px;
 }
-
+        
 /* Section Titles */
 .section-title {
     text-align: center;
