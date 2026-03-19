@@ -349,44 +349,51 @@
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
-   function handlePay(amount, projectName, emailId) {
-        const emailField = document.getElementById(emailId);
-        const userEmail = emailField.value;
-        
-        // Basic validation
-        if (!userEmail || !userEmail.includes("@")) {
-            emailField.style.borderColor = "#ef4444"; // Turn red if empty/wrong
-            alert("Please enter a valid email address to receive your material.");
-            return;
-        }
+ <script src="https://js.paystack.co/v1/inline.js"></script>
 
-        emailField.style.borderColor = "#e2e8f0"; // Reset color
-
-        let handler = PaystackPop.setup({
-            key: pk_test_e840ea08d5a400964616c78dc96209ac47beaade, // Put your Public Key here
-            email: userEmail,
-            amount: amount * 100, 
-            currency: "NGN",
-            custom_fields: [
-                {
-                    display_name: "Project Name",
-                    variable_name: "project_name",
-                    value: projectName
-                }
-            ],
-            ref: 'HDS-' + Math.floor((Math.random() * 1000000000) + 1), 
-            callback: function(response){
-                alert('Payment Successful! Reference: ' + response.reference);
-            },
-            window.location.href = 'success.html'; // Redirect to success page after payment
-            onClose: function(){
-                alert('Tranaction cancelled. Your project is still in the vault!')
-                console.log('User closed the window');
-            }
-        });
-        handler.openIframe();
+<script>
+function handlePay(amount, projectName, emailId) {
+    // This finds the email box for the specific card you clicked
+    const emailBox = document.getElementById(emailId);
+    
+    if (!emailBox) {
+        alert("Error: Email box not found. Check your IDs!");
+        return;
     }
 
+    const userEmail = emailBox.value;
+
+    // Check if they actually typed an email
+    if (!userEmail || !userEmail.includes('@')) {
+        alert("Please enter a valid email address to receive your project.");
+        return;
+    }
+
+    // This opens the Paystack window
+    let handler = PaystackPop.setup({
+        key: 'pk_test_e840ea08d5a400964616c78dc96209ac47beaade', // Your Test Key
+        email: userEmail,
+        amount: amount * 100, // Converts Naira to Kobo
+        currency: 'NGN',
+        metadata: {
+            custom_fields: [
+                {
+                    display_name: "Project Purchased",
+                    variable_name: "project_purchased",
+                    value: projectName
+                }
+            ]
+        },
+        callback: function(response) {
+            // This runs after they pay!
+            window.location.href = "success.html"; 
+        },
+        onClose: function() {
+            alert('Transaction cancelled. Your project is still in the vault!');
+        }
+    });
+    handler.openIframe();
+}
     function payWithPaystack(amount) {
     let handler = PaystackPop.setup({
         key: 'pk_live_xxxxxxxxxxxxxxxxxxxx', // You'll put your key here later
