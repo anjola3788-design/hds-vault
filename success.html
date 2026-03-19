@@ -4,17 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success | HDS Vault</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f1f5f9; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); text-align: center; max-width: 420px; width: 90%; border: 1px solid #e2e8f0; }
-        .success-icon { font-size: 60px; margin-bottom: 20px; }
-        h1 { color: #0f172a; font-size: 24px; margin-bottom: 12px; }
-        p { color: #64748b; font-size: 16px; line-height: 1.6; margin-bottom: 25px; }
-        .btn-group { display: flex; flex-direction: column; gap: 12px; }
-        .download-btn { background: #4338ca; color: white; text-decoration: none; padding: 16px; border-radius: 12px; font-weight: bold; font-size: 18px; box-shadow: 0 10px 15px -3px rgba(67, 56, 202, 0.3); }
-        .support-btn { background: #f8fafc; color: #475569; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: 600; font-size: 14px; border: 1px solid #e2e8f0; }
-        .support-btn:hover { background: #f1f5f9; color: #0f172a; }
-    </style>
+   <style>
+    body { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        background: #f1f5f9; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        /* FIXED: Changed height to min-height and added padding for mobile */
+        min-height: 100vh; 
+        padding: 20px 0;
+        margin: 0; 
+    }
+    .card { 
+        background: white; 
+        padding: 40px; 
+        border-radius: 24px; 
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); 
+        text-align: center; 
+        max-width: 420px; 
+        width: 90%; 
+        border: 1px solid #e2e8f0; 
+    }
+    .success-icon { font-size: 60px; margin-bottom: 20px; }
+    h1 { color: #0f172a; font-size: 24px; margin-bottom: 12px; }
+    p { color: #64748b; font-size: 16px; line-height: 1.6; margin-bottom: 25px; }
+    
+    .btn-group { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 15px; /* Increased gap so buttons don't touch */
+    }
+    
+    .download-btn { 
+        background: #4338ca; 
+        color: white; 
+        text-decoration: none; 
+        padding: 16px; 
+        border-radius: 12px; 
+        font-weight: bold; 
+        font-size: 18px; 
+    }
+    
+    .support-btn { 
+        background: #f8fafc; 
+        color: #475569; 
+        text-decoration: none; 
+        padding: 14px; 
+        border-radius: 10px; 
+        font-weight: 600; 
+        font-size: 14px; 
+        border: 1px solid #e2e8f0; 
+    }
+
+    /* THE BACK LINK STYLE */
+    .back-link {
+        margin-top: 10px;
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+        padding: 10px; /* Bigger tap area for fingers */
+    }
+</style>
 </head>
 <body>
 
