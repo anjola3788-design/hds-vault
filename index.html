@@ -686,5 +686,44 @@ setTimeout(triggerNotification, 3000);
 // 2. Show a new one every 40 seconds
 setInterval(triggerNotification, 40000);
 </script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+function handlePay(amount, projectName, emailId) {
+    // 1. Grab the email from the specific box for THIS card
+    const userEmail = document.getElementById(emailId).value;
+
+    // 2. Make sure they actually typed an email
+    if (!userEmail || !userEmail.includes('@')) {
+        alert("Please enter a valid email address to receive your project.");
+        return;
+    }
+
+    // 3. Open the Paystack window
+    let handler = PaystackPop.setup({
+        key: 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxx', // Change to pk_live later!
+        email: userEmail,
+        amount: amount * 100, // Converts Naira to Kobo
+        currency: 'NGN',
+        metadata: {
+            custom_fields: [
+                {
+                    display_name: "Project Name",
+                    variable_name: "project_name",
+                    value: projectName
+                }
+            ]
+        },
+        callback: function(response) {
+            // This runs after they pay!
+            alert('Payment Successful! Reference: ' + response.reference);
+            window.location.href = "success.html"; 
+        },
+        onClose: function() {
+            alert('Transaction cancelled. Your HDS project is waiting for you!');
+        }
+    });
+    handler.openIframe();
+}
+</script>
 </body>
 </html>
