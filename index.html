@@ -347,8 +347,8 @@
     </div>
 </div>
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
-<script>
+
+
  <script src="https://js.paystack.co/v1/inline.js"></script>
 
 <script>
@@ -394,28 +394,7 @@ function handlePay(amount, projectName, emailId) {
     });
     handler.openIframe();
 }
-    function payWithPaystack(amount) {
-    let handler = PaystackPop.setup({
-        key: 'pk_live_xxxxxxxxxxxxxxxxxxxx', // You'll put your key here later
-        email: 'customer@email.com', // We will make this dynamic later
-        amount: amount * 100, // Converts Naira to Kobo
-        currency: 'NGN',
-        
-        // THIS IS THE IMPORTANT PART:
-        callback: function(response) {
-            // This runs the MOMENT the payment is successful
-            alert('Payment successful! Reference: ' + response.reference);
-            
-            // This sends them to your new success page
-            window.location.href = "success.html"; 
-        },
-        
-        onClose: function() {
-            alert('Transaction was not completed. Need help? Contact us below.');
-        }
-    });
-    handler.openIframe();
-}
+   
     // This function creates the "fake" purchase alerts
 function runLiveBackend() {
     const names = ["Anjola", "Bisi", "John", "Amina", "Suleiman", "Tolu"];
