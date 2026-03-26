@@ -370,26 +370,27 @@ function handlePay(amount, projectName, emailId) {
     }
 
     // This opens the Paystack window
-    let handler = PaystackPop.setup({
-        key: 'pk_test_e840ea08d5a400964616c78dc96209ac47beaade', // Your Test Key
+     let handler = PaystackPop.setup({
+        key: pk_test_e840ea08d5a400964616c78dc96209ac47beaade, // Change to pk_live later!
         email: userEmail,
         amount: amount * 100, // Converts Naira to Kobo
         currency: 'NGN',
         metadata: {
             custom_fields: [
                 {
-                    display_name: "Project Purchased",
-                    variable_name: "project_purchased",
+                    display_name: "Project Name",
+                    variable_name: "project_name",
                     value: projectName
                 }
             ]
         },
         callback: function(response) {
             // This runs after they pay!
+            alert('Payment Successful! Reference: ' + response.reference);
             window.location.href = "success.html"; 
         },
         onClose: function() {
-            alert('Transaction cancelled. Your project is still in the vault!');
+            alert('Transaction cancelled. Your HDS project is waiting for you!');
         }
     });
     handler.openIframe();
@@ -434,20 +435,7 @@ function unlockAdmin() {
     }
 }
 
-// 2. Updated Payment Logger (Add this inside your Paystack 'callback' function)
-// Find your current Paystack callback and add these lines inside it:
-/*
-    totalMoney += amount; 
-    document.getElementById('total-revenue').innerText = "₦" + totalMoney.toLocaleString();
-    
-    const logList = document.getElementById('sales-log-list');
-    const newEntry = document.createElement('div');
-    newEntry.className = 'log-item';
-    newEntry.innerText = `[SUCCESS] ₦${amount} - ${new Date().toLocaleTimeString()}`;
-    logList.prepend(newEntry);
-*/
     let totalMoney = 0;
-
 // The function that unlocks the dashboard
 function unlockAdmin() {
     const access = prompt("Enter Master Password:");
@@ -459,26 +447,8 @@ function unlockAdmin() {
         alert("Access Denied. Unauthorized entry attempt recorded.");
     }
 }
-
-// Make sure your Paystack callback updates the dashboard
-// When you get your Paystack code, ensure it looks like this:
-/*
-    callback: function(response) {
-        alert('Payment Successful!');
-        totalMoney += amount; 
-        document.getElementById('total-revenue').innerText = "₦" + totalMoney.toLocaleString();
-        
-        const log = document.getElementById('sales-log-list');
-        const entry = document.createElement('div');
-        entry.style.borderBottom = "1px solid rgba(255,255,255,0.05)";
-        entry.style.padding = "5px 0";
-        entry.innerText = `[SALE] ₦${amount} - ${new Date().toLocaleTimeString()}`;
-        
-        if (log.innerText.includes("No sales")) log.innerHTML = "";
-        log.prepend(entry);
-    }
-*/
 </script>
+    
     <section id="catalog" style="padding: 60px 20px; background: white; border-radius: 30px; margin: 40px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; z-index: 10;">
     
     <h2 style="text-align: center; color: #0f172a; margin-bottom: 40px; font-family: sans-serif; font-size: 1.8rem;">Select Your Project Type</h2>
@@ -692,32 +662,6 @@ function handlePay(amount, projectName, emailId) {
         return;
     }
 
-    // 3. Open the Paystack window
-    let handler = PaystackPop.setup({
-        key: pk_test_e840ea08d5a400964616c78dc96209ac47beaade, // Change to pk_live later!
-        email: userEmail,
-        amount: amount * 100, // Converts Naira to Kobo
-        currency: 'NGN',
-        metadata: {
-            custom_fields: [
-                {
-                    display_name: "Project Name",
-                    variable_name: "project_name",
-                    value: projectName
-                }
-            ]
-        },
-        callback: function(response) {
-            // This runs after they pay!
-            alert('Payment Successful! Reference: ' + response.reference);
-            window.location.href = "success.html"; 
-        },
-        onClose: function() {
-            alert('Transaction cancelled. Your HDS project is waiting for you!');
-        }
-    });
-    handler.openIframe();
-}
 </script>
 </body>
 </html>
