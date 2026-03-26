@@ -352,28 +352,20 @@
  <script src="https://js.paystack.co/v1/inline.js"></script>
 
 <script>
-function handlePay(amount, projectName, emailId) {
-    // This finds the email box for the specific card you clicked
-    const emailBox = document.getElementById(emailId);
+function handlePay(projectName, amount) {
     
-    if (!emailBox) {
-        alert("Error: Email box not found. Check your IDs!");
+    const userEmail = document.getElementById('userEmail').value; 
+
+    if (!userEmail) {
+        alert("Please enter your email to proceed!");
         return;
     }
 
-    const userEmail = emailBox.value;
-
-    // Check if they actually typed an email
-    if (!userEmail || !userEmail.includes('@')) {
-        alert("Please enter a valid email address to receive your project.");
-        return;
-    }
-
-    // This opens the Paystack window
-     let handler = PaystackPop.setup({
-        key: pk_test_e840ea08d5a400964616c78dc96209ac47beaade, // Change to pk_live later!
+    
+    let handler = PaystackPop.setup({
+        key: 'pk_test_e840ea08d5a400964616c78dc96209ac47beade',
         email: userEmail,
-        amount: amount * 100, // Converts Naira to Kobo
+        amount: amount * 100,
         currency: 'NGN',
         metadata: {
             custom_fields: [
@@ -385,17 +377,16 @@ function handlePay(amount, projectName, emailId) {
             ]
         },
         callback: function(response) {
-            // This runs after they pay!
-            alert('Payment Successful! Reference: ' + response.reference);
-            window.location.href = "success.html"; 
+            // This is the part that takes them to the success page
+            window.location.href = "success.html";
         },
         onClose: function() {
-            alert('Transaction cancelled. Your HDS project is waiting for you!');
+            alert('Transaction cancelled.');
         }
     });
+
     handler.openIframe();
-}
-   
+}    
     // This function creates the "fake" purchase alerts
 function runLiveBackend() {
     const names = ["Anjola", "Bisi", "John", "Amina", "Suleiman", "Tolu"];
